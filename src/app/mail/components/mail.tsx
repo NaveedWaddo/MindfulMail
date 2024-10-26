@@ -4,7 +4,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { TooltipProvider } from "../ui/tooltip";
+import { TooltipProvider } from "../../../components/ui/tooltip";
 import { Props } from "next/script";
 
 type Props = {
