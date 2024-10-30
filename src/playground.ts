@@ -1,11 +1,32 @@
-import { db } from "@/server/db";
+const addressesToUpsert = new Map();
+const email = {
+  from: { address: "naveedwaddo1123@gmail.com", name: "Naveed Waddo" },
+  to: [{ address: "naveedwaddo9545@gmail.com", name: "Naveed Waddo9545" }],
+  cc: [],
+  bcc: [],
+  replyTo: [],
+};
+const all = [
+  email.from,
+  ...email.to,
+  ...email.cc,
+  ...email.bcc,
+  ...email.replyTo,
+];
+// console.log('all', JSON.stringify(all, null, 2))
+for (const address of all) {
+  addressesToUpsert.set(address.address, address);
+}
+for (const address of addressesToUpsert.values()) {
+  console.log("address", address);
+}
 
-await db.user.create({
-  data: {
-    emailAddress: "test@gmail.com",
-    firstName: "naveed",
-    lastName: "waddo",
-  },
-});
+// console.log('addressesToUpsert', JSON.stringify(addressesToUpsert.entries(), null, 2))
 
-console.log("done");
+// const upsertedAddresses: (Awaited<ReturnType<typeof upsertEmailAddress>> | null)[] = [];
+// console.log('upserting addresses', JSON.stringify(addressesToUpsert.values(), null, 2))
+
+// for (const address of addressesToUpsert.values()) {
+//     const upsertedAddress = await upsertEmailAddress(address, accountId);
+//     upsertedAddresses.push(upsertedAddress);
+// }
