@@ -13,16 +13,23 @@ datasource db {
 model User {
     id           String  @id @default(cuid())
     emailAddress String  @unique
-    firstName    String
-    lastName     String
+    firstName    String?
+    lastName     String?
     imageUrl     String?
 
     stripeSubscriptionId String?             @unique
     stripeSubscription   StripeSubscription? @relation(fields: [stripeSubscriptionId], references: [id])
 
+    role Role @default(user)
+
     accounts Account[]
 
     chatbotInteraction ChatbotInteraction?
+}
+
+enum Role {
+    user
+    admin
 }
 
 model ChatbotInteraction {
@@ -58,7 +65,7 @@ model Account {
     id     String @id @default(cuid())
     userId String
 
-    binaryIndex Bytes?
+    binaryIndex Json?
 
     token        String @unique
     provider     String
@@ -147,7 +154,7 @@ enum EmailLabel {
 model EmailAddress {
     id            String  @id @default(cuid())
     name          String?
-    address       String  @unique
+    address       String
     raw           String?
     sentEmails    Email[] @relation("FromEmail")
     receivedTo    Email[] @relation("ToEmails")
