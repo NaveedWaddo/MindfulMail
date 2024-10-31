@@ -4,79 +4,84 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/theme-toggle";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import Image from "next/image";
 
 const LandingPage = async () => {
   const { userId } = auth();
   if (userId) {
     return redirect("/mail");
   }
+
   return (
     <>
-      {/* <div className="h-screen w-full bg-white absolute inset-0">
-            </div> */}
-      <div className="absolute bottom-0 left-0 right-0 top-0 z-[-1] bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_80%)]"></div>
-      <div className="relative z-[10] flex min-h-screen flex-col items-center pt-56">
-        <h1 className="inline-block bg-gradient-to-r from-gray-600 to-gray-900 bg-clip-text text-center text-6xl font-bold text-transparent">
-          The minimalistic, <br />
-          AI-powered email client.
+      <div className="absolute inset-0 z-[-1] bg-gradient-to-r from-gray-800 via-gray-900 to-black opacity-90" />
+      <div className="absolute inset-0 z-[-2] bg-gradient-to-b from-transparent via-gray-600/20 to-gray-900 [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_80%)]"></div>
+      <div className="relative z-10 flex min-h-screen flex-col items-center px-4 pt-36">
+        <h1 className="bg-gradient-to-r from-teal-400 to-indigo-500 bg-clip-text text-center text-6xl font-extrabold text-transparent">
+          The Minimalistic <br /> AI-Powered Email Client
         </h1>
-        <div className="h-4"></div>
-        <p className="mb-8 max-w-xl text-center text-xl text-gray-600">
-          MindfulMail is a minimalistic, AI-powered email client that empowers
-          you to manage your email with ease.
+        <p className="mt-4 max-w-2xl text-center text-lg text-gray-300">
+          MindfulMail helps you stay organized effortlessly with a clean,
+          AI-powered interface that keeps your inbox clutter-free.
         </p>
-        <div className="space-x-4">
-          <Button>
-            <Link href="/mail">Get Started</Link>
-          </Button>
+        <div className="mt-10 flex space-x-4">
+          <Link href="/mail">
+            <Button className="px-8 py-3 text-lg font-semibold">
+              Get Started
+            </Button>
+          </Link>
           <Link href="https://github.com/NaveedWaddo/MindfulMail">
-            <Button variant="outline">Learn More</Button>
+            <Button variant="outline" className="px-8 py-3 text-lg">
+              Learn More
+            </Button>
           </Link>
         </div>
-        <div className="mx-auto mt-12 max-w-5xl">
-          <h2 className="mb-4 text-center text-2xl font-semibold">
-            Experience the power of:
+
+        <div className="mx-auto mt-20 max-w-5xl">
+          <h2 className="mb-6 text-center text-2xl font-semibold text-gray-200">
+            Why MindfulMail?
           </h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="rounded-lg border bg-blue-300 p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-semibold">
-                AI-driven email RAG
+            <div className="rounded-lg border border-gray-700 bg-gray-800/80 p-6 shadow-lg transition-all hover:bg-teal-500/10">
+              <h3 className="mb-2 text-xl font-semibold text-teal-400">
+                AI-Driven Email Prioritization
               </h3>
-              <p className="text-gray-600">
-                Automatically prioritize your emails with our advanced AI
-                system.
+              <p className="text-gray-400">
+                Let AI sort through your inbox and bring the most important
+                emails to the forefront.
               </p>
             </div>
-            <div className="rounded-lg border bg-blue-300 p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-semibold">Full-text search</h3>
-              <p className="text-gray-600">
-                Quickly find any email with our powerful search functionality.
+            <div className="rounded-lg border border-gray-700 bg-gray-800/80 p-6 shadow-lg transition-all hover:bg-indigo-500/10">
+              <h3 className="mb-2 text-xl font-semibold text-indigo-400">
+                Powerful Full-Text Search
+              </h3>
+              <p className="text-gray-400">
+                Quickly find any email with our robust search tool designed to
+                save time.
               </p>
             </div>
-            <div className="rounded-lg border bg-blue-300 p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-semibold">
-                Shortcut-focused interface
+            <div className="rounded-lg border border-gray-700 bg-gray-800/80 p-6 shadow-lg transition-all hover:bg-purple-500/10">
+              <h3 className="mb-2 text-xl font-semibold text-purple-400">
+                Streamlined Shortcuts
               </h3>
-              <p className="text-gray-600">
-                Navigate your inbox efficiently with our intuitive keyboard
+              <p className="text-gray-400">
+                Navigate effortlessly through your inbox with intuitive keyboard
                 shortcuts.
               </p>
             </div>
           </div>
         </div>
-        <Image
-          src="/demo.png"
-          alt="demo"
-          width={1000}
-          height={1000}
-          className="my-12 h-auto w-[70vw] rounded-md border shadow-xl transition-all hover:scale-[102%] hover:shadow-2xl"
-        />
-        <div className="mb-10 flex items-center space-x-4">
-          <Link href="/sign-in" className="text-sm hover:underline">
+
+        <div className="my-16 flex items-center space-x-4">
+          <Link
+            href="/sign-in"
+            className="text-sm text-gray-400 hover:underline"
+          >
             Sign In
           </Link>
-          <Link href="/sign-up" className="text-sm hover:underline">
+          <Link
+            href="/sign-up"
+            className="text-sm text-gray-400 hover:underline"
+          >
             Sign Up
           </Link>
           <ModeToggle />
